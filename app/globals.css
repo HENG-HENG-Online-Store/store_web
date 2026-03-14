@@ -3,24 +3,42 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
+  /* Logo colors: HENG HENG orange + ONLINE STORE blue */
+  --logo-orange: #FF6F00;
+  --logo-orange-light: #FF8F2A;
+  --logo-orange-dark: #E65100;
+  --logo-blue: #1976D2;
+  --logo-blue-light: #42A5F5;
+  --logo-blue-dark: #0D47A1;
+  --accent: var(--logo-orange);
+  --accent-secondary: var(--logo-blue);
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
+  --color-logo-orange: var(--logo-orange);
+  --color-logo-orange-light: var(--logo-orange-light);
+  --color-logo-orange-dark: var(--logo-orange-dark);
+  --color-logo-blue: var(--logo-blue);
+  --color-logo-blue-light: var(--logo-blue-light);
+  --color-logo-blue-dark: var(--logo-blue-dark);
+  /* Khmer first, then Geist fallback - same as body */
+  --font-sans: var(--font-khmer), var(--font-geist-sans), system-ui, -apple-system, sans-serif;
   --font-mono: var(--font-geist-mono);
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --background: #0f1419;
+    --foreground: #e8eaed;
+    --logo-orange: #FF8F2A;
+    --logo-blue: #42A5F5;
   }
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-khmer), var(--font-geist-sans), system-ui, -apple-system, sans-serif;
 }

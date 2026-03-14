@@ -1,65 +1,91 @@
+import React from "react";
 import Image from "next/image";
+import Link from "next/link";
+import Header from "./components/Header";
+import Footer from "./components/Footer";
 
 export default function Home() {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
+    <div className="min-h-screen flex flex-col">
+      <Header />
+
+      {/* Hero */}
+      <section className="relative overflow-hidden bg-gradient-to-br from-[var(--logo-orange)]/10 via-[var(--background)] to-[var(--logo-blue)]/10 py-20 sm:py-28">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 flex flex-col sm:flex-row items-center gap-12">
+          <div className="flex-1 text-center sm:text-left">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-[var(--logo-orange)] mb-4">
+              ស្វាគមន៍មកកាន់ ហេង ហេង ហាងអនឡាញ
+            </h1>
+            <p className="text-lg text-[var(--logo-blue)] mb-6 max-w-xl">
+              ទិញឥវ៉ាន់អនឡាញដោយងាយស្រួល រហ័ស និងអាចទុកចិត្តបាន
+            </p>
+            <div className="flex flex-wrap gap-4 justify-center sm:justify-start">
+              <Link
+                href="/products"
+                className="inline-flex items-center justify-center px-6 py-3 rounded-lg bg-[var(--logo-orange)] text-white font-semibold hover:bg-[var(--logo-orange-dark)] transition-colors shadow-md"
+              >
+                រកមើលផលិតផល
+              </Link>
+              <Link
+                href="/contact"
+                className="inline-flex items-center justify-center px-6 py-3 rounded-lg border-2 border-[var(--logo-blue)] text-[var(--logo-blue)] font-semibold hover:bg-[var(--logo-blue)]/10 transition-colors"
+              >
+                ទំនាក់ទំនង
+              </Link>
+            </div>
+          </div>
+          <div className="flex-shrink-0">
             <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
+              src="/logo/logo.png"
+              alt="ហេង ហេង ហាងអនឡាញ"
+              width={280}
+              height={280}
+              className="object-contain drop-shadow-lg"
+              priority
             />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+          </div>
         </div>
-      </main>
+      </section>
+
+      {/* Features / Why us */}
+      <section className="py-16 border-t border-[var(--logo-blue)]/15">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6">
+          <h2 className="text-2xl font-bold text-[var(--logo-orange)] text-center mb-10">
+            ហេតុអ្វីជ្រើសរើសយើង?
+          </h2>
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-8">
+            <div className="text-center p-6 rounded-xl bg-[var(--logo-orange)]/5 border border-[var(--logo-orange)]/20">
+              <div className="w-12 h-12 mx-auto mb-4 rounded-full bg-[var(--logo-orange)]/20 flex items-center justify-center text-[var(--logo-orange)] text-xl font-bold">
+                🛒
+              </div>
+              <h3 className="font-bold text-[var(--logo-blue)] mb-2">ទិញអនឡាញងាយ</h3>
+              <p className="text-[var(--foreground)]/80 text-sm">
+                បញ្ជាទិញពីផ្ទះ រត់ការរហ័ស ចម្ងាយជិត
+              </p>
+            </div>
+            <div className="text-center p-6 rounded-xl bg-[var(--logo-blue)]/5 border border-[var(--logo-blue)]/20">
+              <div className="w-12 h-12 mx-auto mb-4 rounded-full bg-[var(--logo-blue)]/20 flex items-center justify-center text-[var(--logo-blue)] text-xl font-bold">
+                ✓
+              </div>
+              <h3 className="font-bold text-[var(--logo-blue)] mb-2">ផលិតផលពិត</h3>
+              <p className="text-[var(--foreground)]/80 text-sm">
+                ធានាគុណភាព និងផលិតផលពិត ១០០%
+              </p>
+            </div>
+            <div className="text-center p-6 rounded-xl bg-[var(--logo-orange)]/5 border border-[var(--logo-orange)]/20">
+              <div className="w-12 h-12 mx-auto mb-4 rounded-full bg-[var(--logo-orange)]/20 flex items-center justify-center text-[var(--logo-orange)] text-xl font-bold">
+                📞
+              </div>
+              <h3 className="font-bold text-[var(--logo-blue)] mb-2">គាំទ្រ ២៤/៧</h3>
+              <p className="text-[var(--foreground)]/80 text-sm">
+                ក្រុមយើងត្រៀមជួយអ្នកគ្រប់ពេល
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <Footer />
     </div>
   );
 }
