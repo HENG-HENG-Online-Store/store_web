@@ -6,10 +6,12 @@ import Link from "next/link";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import { useCart } from "@/lib/context/cart-context";
+import { useLanguage } from "@/lib/context/language-context";
 import { formatPrice } from "@/lib/utils/format";
 
 export default function CartPage() {
   const { items, removeItem, updateQuantity, itemCount } = useCart();
+  const { t } = useLanguage();
 
   const total = items.reduce(
     (sum, i) => sum + i.product.price * i.quantity,
@@ -23,22 +25,22 @@ export default function CartPage() {
 
       <main className="flex-1 max-w-6xl mx-auto w-full px-4 sm:px-6 py-12">
         <h1 className="text-2xl sm:text-3xl font-bold text-[var(--logo-orange)] mb-2">
-          ឥវ៉ាន់ដែលបានជ្រើសរើស
+          {t("cart.title")}
         </h1>
         <p className="text-[var(--logo-blue)] mb-8">
-          ឥវ៉ាន់ដែលអ្នកជ្រើសរើសនឹងបង្ហាញនៅទីនេះ។
+          {t("cart.subtitle")}
         </p>
 
         {items.length === 0 ? (
           <div className="rounded-xl border border-[var(--logo-blue)]/20 bg-[var(--logo-orange)]/5 p-8 text-center">
             <p className="text-[var(--foreground)]/80 mb-4">
-              រទេះរបស់អ្នកគឺទទេ។ ចូលទៅទំព័រផលិតផលដើម្បីបន្ថែមឥវ៉ាន់។
+              {t("cart.empty")}
             </p>
             <Link
               href="/products"
               className="inline-flex items-center justify-center px-6 py-3 rounded-lg bg-[var(--logo-orange)] text-white font-semibold hover:bg-[var(--logo-orange-dark)] transition-colors"
             >
-              ទៅមើលផលិតផល
+              {t("cart.viewProducts")}
             </Link>
           </div>
         ) : (
@@ -76,7 +78,7 @@ export default function CartPage() {
                           type="button"
                           onClick={() => updateQuantity(product.id, quantity - 1)}
                           className="w-9 h-9 flex items-center justify-center text-[var(--foreground)] hover:bg-[var(--foreground)]/10 transition-colors"
-                          aria-label="ថយចំនួន"
+                          aria-label={t("cart.quantityLess")}
                         >
                           −
                         </button>
@@ -87,7 +89,7 @@ export default function CartPage() {
                           type="button"
                           onClick={() => updateQuantity(product.id, quantity + 1)}
                           className="w-9 h-9 flex items-center justify-center text-[var(--foreground)] hover:bg-[var(--foreground)]/10 transition-colors"
-                          aria-label="បន្ថែមចំនួន"
+                          aria-label={t("cart.quantityMore")}
                         >
                           +
                         </button>
@@ -96,8 +98,8 @@ export default function CartPage() {
                         type="button"
                         onClick={() => removeItem(product.id)}
                         className="p-2 rounded-lg text-red-600 hover:bg-red-500/10 transition-colors"
-                        title="ដកចេញ"
-                        aria-label="ដកចេញ"
+                        title={t("cart.remove")}
+                        aria-label={t("cart.remove")}
                       >
                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                           <path d="M3 6h18M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2" />
@@ -113,7 +115,7 @@ export default function CartPage() {
 
             <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 p-6 rounded-xl border border-[var(--logo-orange)]/30 bg-[var(--logo-orange)]/5">
               <p className="text-lg font-bold text-[var(--foreground)]">
-                សរុបចំនួន {itemCount} របស់:{" "}
+                {t("cart.total", { count: String(itemCount) })}:{" "}
                 <span className="text-[var(--logo-orange)]">
                   {formatPrice(total, currency)}
                 </span>
@@ -122,7 +124,7 @@ export default function CartPage() {
                 href="/checkout"
                 className="inline-flex items-center justify-center px-8 py-3 rounded-lg bg-[var(--logo-orange)] text-white font-semibold hover:bg-[var(--logo-orange-dark)] transition-colors shrink-0"
               >
-                ទូរទាត់រួច
+                {t("cart.checkout")}
               </Link>
             </div>
           </div>

@@ -3,8 +3,10 @@
 import React, { useState } from "react";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
+import { useLanguage } from "@/lib/context/language-context";
 
 export default function ContactPage() {
+  const { t } = useLanguage();
   const [status, setStatus] = useState<"idle" | "sending" | "success" | "error">("idle");
   const [form, setForm] = useState({
     name: "",
@@ -36,10 +38,10 @@ export default function ContactPage() {
 
       <main className="flex-1 max-w-6xl mx-auto w-full px-4 sm:px-6 py-12">
         <h1 className="text-2xl sm:text-3xl font-bold text-[var(--logo-orange)] mb-2">
-          ទំនាក់ទំនង
+          {t("contact.title")}
         </h1>
         <p className="text-[var(--logo-blue)] mb-8">
-          ចង់ជួយអ្នកគ្រប់ពេល។ ផ្ញើសារមកយើង ឬទូរស័ព្ទ/អ៉ីមែលដោយផ្ទាល់។
+          {t("contact.subtitle")}
         </p>
 
         <div className="grid gap-8 lg:grid-cols-5">
@@ -47,7 +49,7 @@ export default function ContactPage() {
           <div className="lg:col-span-2 space-y-6">
             <div className="rounded-xl border border-[var(--foreground)]/10 bg-[var(--background)] p-6">
               <h2 className="font-bold text-lg text-[var(--foreground)] mb-4">
-                ព័ត៌មានទំនាក់ទំនង
+                {t("contact.infoTitle")}
               </h2>
               <ul className="space-y-4">
                 <li className="flex items-start gap-3">
@@ -57,7 +59,7 @@ export default function ContactPage() {
                     </svg>
                   </span>
                   <div>
-                    <p className="font-medium text-[var(--foreground)]">ទូរស័ព្ទ</p>
+                    <p className="font-medium text-[var(--foreground)]">{t("contact.phone")}</p>
                     <a href="tel:+85512345678" className="text-[var(--logo-blue)] hover:underline">
                       +855 12 345 678
                     </a>
@@ -71,7 +73,7 @@ export default function ContactPage() {
                     </svg>
                   </span>
                   <div>
-                    <p className="font-medium text-[var(--foreground)]">អ៉ីមែល</p>
+                    <p className="font-medium text-[var(--foreground)]">{t("contact.email")}</p>
                     <a href="mailto:contact@hengheng-store.com" className="text-[var(--logo-blue)] hover:underline break-all">
                       contact@hengheng-store.com
                     </a>
@@ -85,9 +87,9 @@ export default function ContactPage() {
                     </svg>
                   </span>
                   <div>
-                    <p className="font-medium text-[var(--foreground)]">អាសយដ្ឋាន</p>
+                    <p className="font-medium text-[var(--foreground)]">{t("contact.address")}</p>
                     <p className="text-[var(--foreground)]/80">
-                      ភ្នំពេញ, កម្ពុជា
+                      {t("contact.addressValue")}
                     </p>
                   </div>
                 </li>
@@ -99,18 +101,18 @@ export default function ContactPage() {
           <div className="lg:col-span-3">
             <div className="rounded-xl border border-[var(--foreground)]/10 bg-[var(--background)] p-6 sm:p-8">
               <h2 className="font-bold text-lg text-[var(--foreground)] mb-6">
-                ផ្ញើសារមកយើង
+                {t("contact.formTitle")}
               </h2>
 
               {status === "success" && (
                 <div className="mb-6 p-4 rounded-lg bg-green-500/10 text-green-700 dark:text-green-400 border border-green-500/20">
-                  អរគុណ! យើងបានទទួលសាររបស់អ្នក នឹងតបវិញឆាប់ៗនេះ។
+                  {t("contact.success")}
                 </div>
               )}
 
               {status === "error" && (
                 <div className="mb-6 p-4 rounded-lg bg-red-500/10 text-red-700 dark:text-red-400 border border-red-500/20">
-                  មានបញ្ហា សូមព្យាយាមម្តងទៀត។
+                  {t("contact.error")}
                 </div>
               )}
 
@@ -118,7 +120,7 @@ export default function ContactPage() {
                 <div className="grid gap-5 sm:grid-cols-2">
                   <div>
                     <label htmlFor="name" className="block text-sm font-medium text-[var(--foreground)] mb-1.5">
-                      ឈ្មោះ *
+                      {t("contact.name")} *
                     </label>
                     <input
                       id="name"
@@ -128,12 +130,12 @@ export default function ContactPage() {
                       value={form.name}
                       onChange={handleChange}
                       className="w-full px-4 py-2.5 rounded-lg border border-[var(--foreground)]/20 bg-[var(--background)] text-[var(--foreground)] placeholder:text-[var(--foreground)]/50 focus:outline-none focus:ring-2 focus:ring-[var(--logo-orange)] focus:border-transparent"
-                      placeholder="ឈ្មោះរបស់អ្នក"
+                      placeholder={t("contact.namePlaceholder")}
                     />
                   </div>
                   <div>
                     <label htmlFor="email" className="block text-sm font-medium text-[var(--foreground)] mb-1.5">
-                      អ៉ីមែល *
+                      {t("contact.emailLabel")} *
                     </label>
                     <input
                       id="email"
@@ -151,7 +153,7 @@ export default function ContactPage() {
                 <div className="grid gap-5 sm:grid-cols-2">
                   <div>
                     <label htmlFor="phone" className="block text-sm font-medium text-[var(--foreground)] mb-1.5">
-                      ទូរស័ព្ទ
+                      {t("contact.phoneLabel")}
                     </label>
                     <input
                       id="phone"
@@ -165,7 +167,7 @@ export default function ContactPage() {
                   </div>
                   <div>
                     <label htmlFor="subject" className="block text-sm font-medium text-[var(--foreground)] mb-1.5">
-                      ប្រធានបទ *
+                      {t("contact.subject")} *
                     </label>
                     <select
                       id="subject"
@@ -175,18 +177,18 @@ export default function ContactPage() {
                       onChange={handleChange}
                       className="w-full px-4 py-2.5 rounded-lg border border-[var(--foreground)]/20 bg-[var(--background)] text-[var(--foreground)] focus:outline-none focus:ring-2 focus:ring-[var(--logo-orange)] focus:border-transparent"
                     >
-                      <option value="">-- ជ្រើសរើស --</option>
-                      <option value="order">សំណួរអំពីការបញ្ជាទិញ</option>
-                      <option value="product">សំណួរអំពីផលិតផល</option>
-                      <option value="support">ជំនួយ / បញ្ហាបច្ចេកទេស</option>
-                      <option value="other">ផ្សេងៗ</option>
+                      <option value="">{t("contact.subjectSelect")}</option>
+                      <option value="order">{t("contact.subjectOrder")}</option>
+                      <option value="product">{t("contact.subjectProduct")}</option>
+                      <option value="support">{t("contact.subjectSupport")}</option>
+                      <option value="other">{t("contact.subjectOther")}</option>
                     </select>
                   </div>
                 </div>
 
                 <div>
                   <label htmlFor="message" className="block text-sm font-medium text-[var(--foreground)] mb-1.5">
-                    សារ *
+                    {t("contact.message")} *
                   </label>
                   <textarea
                     id="message"
@@ -196,7 +198,7 @@ export default function ContactPage() {
                     value={form.message}
                     onChange={handleChange}
                     className="w-full px-4 py-2.5 rounded-lg border border-[var(--foreground)]/20 bg-[var(--background)] text-[var(--foreground)] placeholder:text-[var(--foreground)]/50 focus:outline-none focus:ring-2 focus:ring-[var(--logo-orange)] focus:border-transparent resize-y min-h-[120px]"
-                    placeholder="សូមសរសេរសាររបស់អ្នក..."
+                    placeholder={t("contact.messagePlaceholder")}
                   />
                 </div>
 
@@ -205,7 +207,7 @@ export default function ContactPage() {
                   disabled={status === "sending"}
                   className="w-full sm:w-auto px-8 py-3 rounded-lg bg-[var(--logo-orange)] text-white font-semibold hover:bg-[var(--logo-orange-dark)] transition-colors disabled:opacity-60 disabled:cursor-not-allowed"
                 >
-                  {status === "sending" ? "កំពុងផ្ញើ..." : "ផ្ញើសារ"}
+                  {status === "sending" ? t("contact.sending") : t("contact.send")}
                 </button>
               </form>
             </div>
