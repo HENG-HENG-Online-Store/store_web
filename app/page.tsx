@@ -7,6 +7,7 @@ import Header from "./components/Header";
 import Footer from "./components/Footer";
 import HomeProducts from "./components/HomeProducts";
 import { useLanguage } from "@/lib/context/language-context";
+import { GOOGLE_MAPS_EMBED_URL, GOOGLE_MAPS_DIRECTIONS_URL } from "@/lib/constants/location";
 
 export default function Home() {
   const { t } = useLanguage();
@@ -98,6 +99,48 @@ export default function Home() {
               <p className="text-[var(--foreground)]/80 text-sm">
                 {t("features.supportDesc")}
               </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Location: address + map + directions */}
+      <section className="py-16 border-t border-[var(--logo-blue)]/15 bg-[var(--background)]">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6">
+          <h2 className="text-2xl font-bold text-[var(--logo-orange)] text-center mb-10">
+            {t("location.title")}
+          </h2>
+          <div className="grid grid-cols-1 lg:grid-cols-5 gap-8 items-start">
+            <div className="lg:col-span-2 space-y-4">
+              <p className="font-medium text-[var(--foreground)]/80">{t("contact.address")}</p>
+              <p className="text-lg text-[var(--foreground)]">
+                {t("contact.addressValue")}
+              </p>
+              <a
+                href={GOOGLE_MAPS_DIRECTIONS_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 px-5 py-3 rounded-lg bg-[var(--logo-orange)] text-white font-semibold hover:bg-[var(--logo-orange-dark)] transition-colors shadow-md"
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
+                  <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
+                  <circle cx="12" cy="10" r="3" />
+                </svg>
+                {t("location.getDirections")}
+              </a>
+            </div>
+            <div className="lg:col-span-3 relative rounded-2xl overflow-hidden border border-[var(--foreground)]/10 shadow-lg aspect-[4/3] min-h-[280px]">
+              <iframe
+                src={GOOGLE_MAPS_EMBED_URL}
+                width="100%"
+                height="100%"
+                style={{ border: 0 }}
+                allowFullScreen
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                title={t("location.title")}
+                className="absolute inset-0 w-full h-full"
+              />
             </div>
           </div>
         </div>
